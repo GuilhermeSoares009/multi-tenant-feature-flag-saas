@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ff
+      POSTGRES_USER: ff
+      POSTGRES_PASSWORD: ff
+    ports:
+      - "5435:5432"
+  redis:
+    image: redis:7
+    ports:
+      - "6382:6379"
+  app:
+    build: .
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8083:8080"
